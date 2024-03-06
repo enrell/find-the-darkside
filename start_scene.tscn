@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://dc733ueesbjad"]
+
+[ext_resource type="Texture2D" uid="uid://bpe66jnhyelkg" path="res://Player/Idle/0.png" id="1_ow2u0"]
+[ext_resource type="Texture2D" uid="uid://dtpe44rmdl2eq" path="res://Player/Idle/1.png" id="2_fpn7d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6fpje"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ow2u0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fpn7d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kixiu"]
+radius = 5.45455
+height = 18.5455
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xfrbt"]
+distance = -4.0
+
+[node name="World" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(150, 228)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(54, 64)
+scale = Vector2(7.33333, 7.33333)
+sprite_frames = SubResource("SpriteFrames_6fpje")
+frame = 1
+frame_progress = 0.148609
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Player/AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AnimatedSprite2D/CharacterBody2D"]
+position = Vector2(0.272727, 0.272727)
+shape = SubResource("CapsuleShape2D_kixiu")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(472, 354)
+scale = Vector2(4, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D"]
+position = Vector2(8.5, 64)
+shape = SubResource("WorldBoundaryShape2D_xfrbt")
